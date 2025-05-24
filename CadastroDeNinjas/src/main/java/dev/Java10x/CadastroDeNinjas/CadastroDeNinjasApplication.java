@@ -11,3 +11,4 @@ public class CadastroDeNinjasApplication {
 	}
 
 }
+//PROXIMO A ASSISTIR AULA 6
