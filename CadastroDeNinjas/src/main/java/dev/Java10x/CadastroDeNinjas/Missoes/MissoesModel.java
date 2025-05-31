@@ -4,6 +4,7 @@ import dev.Java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
 
 import javax.annotation.processing.Generated;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_missoes")
@@ -15,8 +16,9 @@ public class MissoesModel {
     private String nome;
     private String dificuldade;
 
-    @ManyToOne
-    private NinjaModel ninjas;
+    //OneToMany -> Uma missao pode ter varios ninjas
+    @OneToMany(mappedBy = "missoes")
+    private List<NinjaModel> ninjas;
 
 
     public MissoesModel(){
