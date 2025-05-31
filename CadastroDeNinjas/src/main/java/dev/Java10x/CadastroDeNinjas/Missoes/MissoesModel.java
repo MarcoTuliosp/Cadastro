@@ -2,10 +2,14 @@ package dev.Java10x.CadastroDeNinjas.Missoes;
 
 import dev.Java10x.CadastroDeNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
+import lombok.*;
 
 import javax.annotation.processing.Generated;
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
 @Table(name = "tb_missoes")
 public class MissoesModel {
@@ -21,26 +25,4 @@ public class MissoesModel {
     private List<NinjaModel> ninjas;
 
 
-    public MissoesModel(){
-
-
-    }
-
-    public MissoesModel(String nome, String dificuldade) {
-        this.nome = nome;
-        this.dificuldade = dificuldade;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-
-    }
-    public String getDificuldade() {
-        return dificuldade;
-    }
-    public void setDificuldade(String dificuldade) {
-
-    }
 }
