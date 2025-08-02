@@ -10,32 +10,35 @@ import java.util.Optional;
 public class NinjaService {
 
     private NinjaRepository ninjaRepository;
+    private NinjaMapper ninjaMapper;
 
-    public NinjaService(NinjaRepository ninjaRepository) {
+    public NinjaService(NinjaMapper ninjaMapper, NinjaRepository ninjaRepository) {
+        this.ninjaMapper = ninjaMapper;
         this.ninjaRepository = ninjaRepository;
     }
 
-
     //Listar todos os Ninjas
-    public List<NinjaModel> listarNinjas(){
+    public List<NinjaModel> listarNinjas() {
         return ninjaRepository.findAll();
 
     }
 
     //Listar Ninjas por ID
-     public NinjaModel listarPorId(Long id) {
-         Optional<NinjaModel> ninjaPorId = ninjaRepository.findById(id);
-         return  ninjaPorId.orElse(null);
-     }
+    public NinjaModel listarPorId(Long id) {
+        Optional<NinjaModel> ninjaPorId = ninjaRepository.findById(id);
+        return ninjaPorId.orElse(null);
+    }
 
     //Criar um Novo Ninja
-    public NinjaModel criarNinja(NinjaModel ninja){
-        return ninjaRepository.save(ninja);
+    public NinjaDTO criarNinja(NinjaDTO ninjaDTO) {
+        NinjaModel ninja =  ninjaMapper.map(ninjaDTO);
+       ninja =  ninjaRepository.save(ninja);
+        return ninjaMapper.map(ninja);
     }
 
     // Deletar Ninja -> Tem que ser um metodo VOID
 
-    public  void deletarNinjaPorId(Long id){
+    public void deletarNinjaPorId(Long id) {
         ninjaRepository.deleteById(id);
     }
 
@@ -50,4 +53,6 @@ public class NinjaService {
         return null;
     }
 
-}
+
+    }
+
