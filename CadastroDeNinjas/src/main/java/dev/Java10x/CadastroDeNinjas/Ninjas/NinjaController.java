@@ -10,7 +10,6 @@ import java.util.Optional;
 public class NinjaController {
 
     private NinjaService ninjaService;
-
     public NinjaController(NinjaService ninjaService) {
         this.ninjaService = ninjaService;
     }
@@ -48,8 +47,9 @@ public class NinjaController {
     }
 
     //deletar ninja(DELETE)
-    @DeleteMapping("/deletarID")
-    public String deletarNinjaPorId(){
-        return "Ninja deletado por Id";
+    @DeleteMapping("/deletar/{id}")
+    public void deletarNinjaPorId(@PathVariable Long id){
+        ninjaService.deletarNinjaPorId(id);
+
     }
 }
